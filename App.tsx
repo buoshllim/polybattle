@@ -29,6 +29,24 @@ const App: React.FC = () => {
   const inputRef = useRef({ x: 0, y: 0, isAttacking: false });
   const [gameState, setGameState] = useState<GameState>('MENU');
   
+  // Orientation Check State
+  const [isWrongOrientation, setIsWrongOrientation] = useState(false);
+
+  useEffect(() => {
+    const checkOrientation = () => {
+      const isLandscape = window.innerWidth > window.innerHeight;
+      // Heuristic to detect mobile devices (Touch points + User Agent or small screen width)
+      const isMobile = /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || (navigator.maxTouchPoints > 0 && window.innerWidth < 1024);
+      
+      // Only block if it is clearly a mobile device in landscape
+      setIsWrongOrientation(isMobile && isLandscape);
+    };
+
+    window.addEventListener('resize', checkOrientation);
+    checkOrientation(); // Initial check
+    return () => window.removeEventListener('resize', checkOrientation);
+  }, []);
+
   // Game Settings
   const [difficulty, setDifficulty] = useState(1);
 
@@ -277,6 +295,15 @@ const App: React.FC = () => {
   return (
     <div className="relative w-full h-full bg-slate-900 overflow-hidden select-none font-sans">
       
+      {/* Orientation Lock Overlay */}
+      {isWrongOrientation && (
+        <div className="absolute inset-0 z-[100] bg-slate-900 flex flex-col items-center justify-center text-center p-6 touch-none">
+           <div className="text-6xl mb-6 animate-pulse">📱</div>
+           <h2 className="text-2xl font-black text-white mb-2 uppercase tracking-widest">Portrait Mode Only</h2>
+           <p className="text-slate-400 font-bold">Please rotate your device to play.</p>
+        </div>
+      )}
+
       {/* --- START SCREEN --- */}
       {gameState === 'MENU' && (
         <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-b from-slate-800 to-black text-white">
