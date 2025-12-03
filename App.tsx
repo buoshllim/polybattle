@@ -280,98 +280,102 @@ const App: React.FC = () => {
       {/* --- START SCREEN --- */}
       {gameState === 'MENU' && (
         <div className="absolute inset-0 z-50 flex flex-col items-center justify-center bg-gradient-to-b from-slate-800 to-black text-white">
-          <div className="text-center animate-fade-in-up flex flex-col items-center w-full max-w-lg px-4">
-             <h1 className="text-6xl md:text-8xl font-black mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 drop-shadow-lg tracking-tighter">
+          <div className="text-center animate-fade-in-up flex flex-col items-center w-full max-w-md px-4">
+             {/* Title - Reduced Size */}
+             <h1 className="text-4xl md:text-6xl font-black mb-1 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300 drop-shadow-lg tracking-tighter">
                POLY BATTLE
              </h1>
-             <p className="text-xl text-slate-400 mb-8 tracking-widest uppercase font-bold">POCKET WAR KINGDOM</p>
+             <p className="text-sm text-slate-400 mb-4 tracking-widest uppercase font-bold">POCKET WAR KINGDOM</p>
              
-             {/* Difficulty Selector */}
-             <div className="mb-10 w-full bg-slate-800/50 p-6 rounded-2xl border border-slate-700/50">
-                <div className="text-blue-300 font-bold mb-4 tracking-widest text-sm uppercase">Select Difficulty</div>
+             {/* Difficulty Selector - Compacted */}
+             <div className="mb-4 w-full bg-slate-800/50 p-3 rounded-xl border border-slate-700/50">
+                <div className="text-blue-300 font-bold mb-2 tracking-widest text-xs uppercase">Select Difficulty</div>
                 
-                {/* Row 1: 1-5 */}
-                <div className="flex justify-center gap-2 mb-2">
-                    {[1, 2, 3, 4, 5].map((lvl) => (
-                        <button
-                            key={lvl}
-                            onClick={() => setDifficulty(lvl)}
-                            className={`w-10 h-10 rounded-lg font-bold text-lg transition-all duration-200 border-2
-                                ${difficulty === lvl 
-                                    ? 'bg-red-600 border-red-400 text-white shadow-[0_0_15px_rgba(220,38,38,0.6)] scale-110' 
-                                    : 'bg-slate-800 border-slate-600 text-slate-400 hover:bg-slate-700 hover:border-slate-500'}
-                            `}
-                        >
-                            {lvl}
-                        </button>
-                    ))}
+                <div className="flex flex-col gap-1.5 items-center">
+                    {/* Row 1: 1-5 */}
+                    <div className="flex justify-center gap-1.5">
+                        {[1, 2, 3, 4, 5].map((lvl) => (
+                            <button
+                                key={lvl}
+                                onClick={() => setDifficulty(lvl)}
+                                className={`w-8 h-8 rounded font-bold text-sm transition-all duration-200 border-2
+                                    ${difficulty === lvl 
+                                        ? 'bg-red-600 border-red-400 text-white shadow-[0_0_10px_rgba(220,38,38,0.6)] scale-110' 
+                                        : 'bg-slate-800 border-slate-600 text-slate-400 hover:bg-slate-700 hover:border-slate-500'}
+                                `}
+                            >
+                                {lvl}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Row 2: 6-10 */}
+                    <div className="flex justify-center gap-1.5">
+                        {[6, 7, 8, 9, 10].map((lvl) => (
+                            <button
+                                key={lvl}
+                                onClick={() => setDifficulty(lvl)}
+                                className={`w-8 h-8 rounded font-bold text-sm transition-all duration-200 border-2
+                                    ${difficulty === lvl 
+                                        ? 'bg-red-600 border-red-400 text-white shadow-[0_0_10px_rgba(220,38,38,0.6)] scale-110' 
+                                        : 'bg-slate-800 border-slate-600 text-slate-400 hover:bg-slate-700 hover:border-slate-500'}
+                                `}
+                            >
+                                {lvl}
+                            </button>
+                        ))}
+                    </div>
+
+                    {/* Row 3: 11-15 */}
+                    <div className="flex justify-center gap-1.5">
+                        {[11, 12, 13, 14, 15].map((lvl) => (
+                            <button
+                                key={lvl}
+                                onClick={() => setDifficulty(lvl)}
+                                className={`w-8 h-8 rounded font-bold text-sm transition-all duration-200 border-2
+                                    ${difficulty === lvl 
+                                        ? 'bg-red-600 border-red-400 text-white shadow-[0_0_10px_rgba(220,38,38,0.6)] scale-110' 
+                                        : 'bg-slate-800 border-slate-600 text-slate-400 hover:bg-slate-700 hover:border-slate-500'}
+                                `}
+                            >
+                                {lvl}
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
-                {/* Row 2: 6-10 */}
-                <div className="flex justify-center gap-2 mb-2">
-                    {[6, 7, 8, 9, 10].map((lvl) => (
-                        <button
-                            key={lvl}
-                            onClick={() => setDifficulty(lvl)}
-                            className={`w-10 h-10 rounded-lg font-bold text-lg transition-all duration-200 border-2
-                                ${difficulty === lvl 
-                                    ? 'bg-red-600 border-red-400 text-white shadow-[0_0_15px_rgba(220,38,38,0.6)] scale-110' 
-                                    : 'bg-slate-800 border-slate-600 text-slate-400 hover:bg-slate-700 hover:border-slate-500'}
-                            `}
-                        >
-                            {lvl}
-                        </button>
-                    ))}
-                </div>
-
-                {/* Row 3: 11-15 */}
-                <div className="flex justify-center gap-2 mb-4">
-                    {[11, 12, 13, 14, 15].map((lvl) => (
-                        <button
-                            key={lvl}
-                            onClick={() => setDifficulty(lvl)}
-                            className={`w-10 h-10 rounded-lg font-bold text-lg transition-all duration-200 border-2
-                                ${difficulty === lvl 
-                                    ? 'bg-red-600 border-red-400 text-white shadow-[0_0_15px_rgba(220,38,38,0.6)] scale-110' 
-                                    : 'bg-slate-800 border-slate-600 text-slate-400 hover:bg-slate-700 hover:border-slate-500'}
-                            `}
-                        >
-                            {lvl}
-                        </button>
-                    ))}
-                </div>
-
-                <div className="text-sm text-slate-400 font-mono bg-slate-900/50 py-2 px-4 rounded-full inline-block">
-                    Enemy Starting Level: <span className="text-red-400 font-bold text-lg ml-1">{difficulty}</span>
+                <div className="mt-2 text-xs text-slate-400 font-mono bg-slate-900/50 py-1 px-3 rounded-full inline-block">
+                    Enemy Lv: <span className="text-red-400 font-bold ml-1">{difficulty}</span>
                 </div>
              </div>
 
+             {/* Start Button - Compacted */}
              <button 
                 onClick={startGame}
-                className="group relative px-12 py-5 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full text-2xl font-bold shadow-[0_0_30px_rgba(37,99,235,0.5)] hover:shadow-[0_0_50px_rgba(37,99,235,0.8)] hover:scale-105 transition-all duration-300 overflow-hidden mb-12 w-full max-w-sm"
+                className="group relative px-8 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-full text-lg font-bold shadow-[0_0_20px_rgba(37,99,235,0.5)] hover:shadow-[0_0_30px_rgba(37,99,235,0.8)] hover:scale-105 transition-all duration-300 overflow-hidden mb-4 w-full max-w-xs"
              >
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 rounded-full"></div>
                 <span className="relative z-10">START BATTLE</span>
              </button>
 
-             {/* New Instructions Section */}
-             <div className="flex flex-col gap-4 text-left bg-slate-800/80 p-6 rounded-2xl border border-slate-600 backdrop-blur-md w-full shadow-2xl">
-                 <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-slate-700 flex items-center justify-center text-2xl shadow-inner border border-slate-600">⚙️</div>
-                    <div>
-                       <div className="text-white font-bold text-base">Click Spawners</div>
-                       <div className="text-slate-400 text-sm">Upgrade Units & Spawn Speed</div>
+             {/* Instructions - Horizontal Layout to save height */}
+             <div className="flex flex-row gap-2 justify-center bg-slate-800/80 p-3 rounded-xl border border-slate-600 backdrop-blur-md w-full shadow-xl">
+                 <div className="flex flex-1 items-center gap-2 p-1 bg-slate-700/30 rounded-lg">
+                    <div className="w-8 h-8 rounded bg-slate-700 flex items-center justify-center text-lg shadow-inner border border-slate-600">⚙️</div>
+                    <div className="text-left">
+                       <div className="text-white font-bold text-xs leading-tight">Spawners</div>
+                       <div className="text-slate-400 text-[10px] leading-tight">Upgrade Units</div>
                     </div>
                  </div>
-                 <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-blue-900/50 flex items-center justify-center text-2xl shadow-inner border border-blue-800">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-6 h-6 text-blue-400">
+                 <div className="flex flex-1 items-center gap-2 p-1 bg-slate-700/30 rounded-lg">
+                    <div className="w-8 h-8 rounded bg-blue-900/50 flex items-center justify-center text-lg shadow-inner border border-blue-800">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5 text-blue-400">
                            <path fillRule="evenodd" d="M3 2.25a.75.75 0 01.75.75v.54l1.838-.46a9.75 9.75 0 016.725.738l.108.054a8.25 8.25 0 005.58.652l3.109-.732a.75.75 0 01.917.81 47.784 47.784 0 00.005 10.337.75.75 0 01-.574.812l-3.114.733a9.75 9.75 0 01-6.594-.158l-.108-.054a8.25 8.25 0 00-5.89-.538l-2.258.452v7.12a.75.75 0 01-1.5 0v-19.5a.75.75 0 01.75-.75z" clipRule="evenodd" />
                         </svg>
                     </div>
-                    <div>
-                       <div className="text-white font-bold text-base">Click Base Flag</div>
-                       <div className="text-slate-400 text-sm">Upgrade Hero & Skills</div>
+                    <div className="text-left">
+                       <div className="text-white font-bold text-xs leading-tight">Base Flag</div>
+                       <div className="text-slate-400 text-[10px] leading-tight">Upgrade Hero</div>
                     </div>
                  </div>
              </div>
